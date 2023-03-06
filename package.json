@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node ./dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
-    "build": "tsc",
+    "build": "npm i && tsc",
     "lint": "eslint --ext .ts ./",
     "format": "npm run lint --fix",
     "test": " cross-env NODE_ENV=test jest --runInBand",
