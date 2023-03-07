@@ -5,6 +5,8 @@ import express, {
   NextFunction,
   ErrorRequestHandler,
 } from 'express';
+import cors from 'cors';
+
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
@@ -16,18 +18,19 @@ dotenv.config();
 const app: Express = express();
 
 app.set('port', process.env.PORT || 4000);
-
+app.use(cors());
+app.options('*', cors());
 // eslint-disable-next-line func-names
-const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-};
+// const allowCrossDomain = function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// };
 app.use([compression(),
   express.json(),
   cookieParser(),
-  allowCrossDomain,
+  // allowCrossDomain,
   express.urlencoded({ extended: false })]);
 
 if (process.env.NODE_ENV === 'development') {
