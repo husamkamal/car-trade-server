@@ -19,22 +19,22 @@ const app: Express = express();
 
 app.set('port', process.env.PORT || 4000);
 const corsOptions = {
-  origin: 'https://6407112b11187c6caaaed1a9--iridescent-stardust-cbc28d.netlify.app/',
+  origin: true,
   credentials: true,
 };
 app.use(cors(corsOptions));
 app.options('*', cors());
 // eslint-disable-next-line func-names
-// const allowCrossDomain = function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// };
+const allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+};
 app.use([compression(),
   express.json(),
   cookieParser(),
-  // allowCrossDomain,
+  allowCrossDomain,
   express.urlencoded({ extended: false })]);
 
 if (process.env.NODE_ENV === 'development') {
