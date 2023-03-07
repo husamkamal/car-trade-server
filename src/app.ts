@@ -18,23 +18,23 @@ dotenv.config();
 const app: Express = express();
 
 app.set('port', process.env.PORT || 4000);
-const corsOptions = {
-  origin: true,
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: true,
+//   credentials: true,
+// };
+app.use(cors());
 app.options('*', cors());
-// eslint-disable-next-line func-names
-const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-};
+// // eslint-disable-next-line func-names
+// const allowCrossDomain = function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// };
 app.use([compression(),
   express.json(),
   cookieParser(),
-  allowCrossDomain,
+  // allowCrossDomain,
   express.urlencoded({ extended: false })]);
 
 if (process.env.NODE_ENV === 'development') {
