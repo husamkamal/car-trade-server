@@ -19,7 +19,7 @@ const app: Express = express();
 
 app.set('port', process.env.PORT || 4000);
 const corsOptions = {
-  origin: true,
+  origin: 'https://6407112b11187c6caaaed1a9--iridescent-stardust-cbc28d.netlify.app/',
   credentials: true,
 };
 app.use(cors(corsOptions));
