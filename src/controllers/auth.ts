@@ -25,7 +25,7 @@ const loginController = async (req:Request) => {
   return {
     status: 200,
     data: {
-      id: result.id, email: result.email, username: result.fullName, role: 'user',
+      id: result.id, email: result.email, username: result.fullName, role: 'user', token,
     },
     token,
   };
@@ -53,7 +53,7 @@ const signupController = async (req:Request) => {
     status: 201,
     msg: 'done!',
     data: {
-      id: user.id, email: user.email, username: user.fullName, role: 'user',
+      id: user.id, email: user.email, username: user.fullName, role: 'user', token,
     },
     token,
   };
@@ -98,7 +98,7 @@ const loginAdmin = async (req:Request) => {
     status: 200,
     data:
     {
-      id: result.id, username: result.username, role: 'admin',
+      id: result.id, username: result.username, role: 'admin', token,
     },
     token,
   };
