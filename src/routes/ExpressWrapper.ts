@@ -9,11 +9,11 @@ const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, nex
     const {
       status, data = null, msg = null, token = null,
     } = await fn(req, res, next);
-    // if (token) {
-    res.cookie('token', token, { expires: new Date(Date.now() + 9999999), httpOnly: false }).status(status).json({ msg, data });
-    // } else {
-    // res.status(status).json({ msg, data });
-    // }
+    if (token) {
+      res.cookie('token', token, { expires: new Date(Date.now() + 9999999), httpOnly: false }).status(status).json({ msg, data });
+    } else {
+      res.status(status).json({ msg, data });
+    }
   } catch (error: any) {
     // may need change
     if (error.name === 'ValidationError') {
