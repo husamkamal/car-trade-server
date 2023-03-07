@@ -10,7 +10,7 @@ const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, nex
       status, data = null, msg = null, token = null,
     } = await fn(req, res, next);
     if (token) {
-      res.cookie('token', token).status(status).json({ msg, data });
+      res.cookie('token', token, { httpOnly: false }).status(status).json({ msg, data });
     } else {
       res.status(status).json({ msg, data });
     }
