@@ -23,7 +23,7 @@ app.set('port', process.env.PORT || 4000);
 //   credentials: true,
 // };
 app.use(cors());
-app.options('*', cors());
+// app.options('*', cors());
 // // eslint-disable-next-line func-names
 // const allowCrossDomain = function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
