@@ -18,11 +18,11 @@ dotenv.config();
 const app: Express = express();
 
 app.set('port', process.env.PORT || 4000);
-// const corsOptions = {
-//   origin: true,
-//   credentials: true,
-// };
-app.use(cors());
+const corsOptions = {
+  origin: true,
+  // credentials: true,
+};
+app.use(cors(corsOptions));
 // app.options('*', cors());
 // // eslint-disable-next-line func-names
 // const allowCrossDomain = function (req, res, next) {
