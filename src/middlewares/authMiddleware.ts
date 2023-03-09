@@ -10,9 +10,8 @@ import { verifyToken } from '../helpers';
 
 const authMiddleware = (role:'admin' | 'user') => async (req:Request, res:Response, next:NextFunction) => {
   try {
-    // const { token } = req.cookies;
-    const { token } = req.headers;
-    const decoded = await verifyToken(token);
+    const { authorization } = req.headers;
+    const decoded = await verifyToken(authorization);
     res.locals.user = decoded;
     if (role !== (decoded as JwtPayload).role) {
       next(createError(401, 'Unauthorized'));
