@@ -60,9 +60,9 @@ const signupController = async (req:Request) => {
 };
 
 const userController = async (req:Request) => {
-  const { token } = req.cookies;
-  if (token) {
-    const decoded:any = await verifyToken(token);
+  const { authorization } = req.headers;
+  if (authorization) {
+    const decoded:any = await verifyToken(authorization);
     if (decoded.role === 'user') {
       const result:{ fullName: string,
         email:string,
